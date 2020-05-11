@@ -96,6 +96,10 @@ export class FolderViewComponent {
     this.dataSource.data = TREE_DATA;
   }
 
+  public onDragDrop(event: CdkDragDrop<FolderFlatNode, FolderFlatNode>): void {
+    this.itemDrop.emit(event);
+  }
+
   treeFlattener = new MatTreeFlattener(
     this._transformer,
     node => node.level,
