@@ -1,27 +1,28 @@
 <p> This is my folder view
 </p>
-<div style="border: black 1px solid; height: auto; background-color: lightblue;" cdkDropList>
+<div style="border: black 1px solid; height: auto; background-color: lightblue;">
 
-	<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
-
-		<mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-			<div style="background-color: lightgreen" cdkDrag [cdkDragData]="node">
-				<button mat-icon-button></button>
-				{{node.name}}
-			</div>
-		</mat-tree-node>
-		<div cdkDropList>
-			<mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-				<div style="background-color: yellow; width: 160px;" cdkDrag [cdkDragData]="node">
-					<button mat-icon-button matTreeNodeToggle
+	<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
+		<!-- Parent node -->
+		<mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding cdkDropList>
+			<div style="background-color: yellow; width: 160px;" cdkDrag [cdkDragData]="node">
+				<button mat-icon-button matTreeNodeToggle
             [attr.aria-label]="'toggle ' + node.name">
       <mat-icon class="mat-icon-rtl-mirror">
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
       {{node.name}}
     </button>
-				</div>
-			</mat-tree-node>
-		</div>
+			</div>
+		</mat-tree-node>
+
+		<!-- Leaf node -->
+		<mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+			<div style="background-color: lightgreen" cdkDrag [cdkDragData]="node">
+				<button mat-icon-button></button>
+				{{node.name}}
+			</div>
+		</mat-tree-node>
+
 	</mat-tree>
 </div>
